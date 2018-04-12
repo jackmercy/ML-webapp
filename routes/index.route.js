@@ -11,13 +11,6 @@ router.get('/check', (req, res) =>
   res.send('Hello hooman!')
 );
 
-// mount user routes at /users
-router.use('/user', userRoutes);
-
-// mount candidate routes at /candidates
-router.use('/candidate', candidateRoutes);
-router.use('/contract', contractRoutes);
-// mount auth routes at /auth
-// router.use('/auth', authRoutes);
+// router.use('/user', userRoutes);
 
 export default router;

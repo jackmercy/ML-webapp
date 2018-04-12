@@ -4,10 +4,6 @@ import { HomeComponent } from './components/home.component';
 /* Modules */
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
-import { GuideComponent } from './components/guide.component';
-import { VotingComponent } from './components/voting.component';
-import { ScoreBoardComponent } from './components/score-board.component';
-import { CandidateComponent } from './components/candidate.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +11,6 @@ import { CandidateComponent } from './components/candidate.component';
     SharedModule
   ],
   exports: [HomeComponent],
-  declarations: [HomeComponent, GuideComponent, VotingComponent, ScoreBoardComponent, CandidateComponent]
+  declarations: [HomeComponent]
 })
 export class HomeModule { }
