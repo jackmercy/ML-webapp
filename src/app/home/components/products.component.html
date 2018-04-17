@@ -1,0 +1,9 @@
+<div class="container voting-grid">
+    <mat-grid-list cols="3" rowHeight="3:4.75" gutterSize="15px">
+        <mat-grid-tile *ngFor="let item of items">
+            <app-product-detail [item]="item"></app-product-detail>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+
