@@ -8,8 +8,6 @@ import appRoot from 'app-root-path';
 import morgan from 'morgan';
 // import logger from 'logger';
 import router from './routes/index.route';
-import Web3 from 'web3';
-import votingJson from './Voting';
 /* Import libary */
 
 /* Init variable */
@@ -17,12 +15,12 @@ var app = express();
 var port = process.env.port || 5000;
 /* Init variable */
 
-/* MongoDb */
+/*/!* MongoDb *!/
 var db;
 db = mongoose.connect('mongodb://localhost/voting-dapp')
     .then(() =>  console.log('connection succesful to mongodb'))
     .catch((err) => console.error(err));
-/* MongoDb */
+/!* MongoDb *!/*/
 
 /* Utility package */
 // app.use(logger('dev'));
@@ -68,22 +66,5 @@ app.use(function(err, req, res, next) {
 app.listen(port, function() {
     console.log('server is running on:' + port);
 });
-
-
-//Connecting to blockchain
-var abiDefinition;
-var VotingContract;
-global.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"));
-
-abiDefinition = votingJson.abi;
-VotingContract = global.web3.eth.contract(abiDefinition);
-
-global.contractInstance = VotingContract.at('0xf12b5dd4ead5f743c6baa640b0216200e89b60da');
-if (contractInstance) {
-    console.log('successfully connected to blockchain');
-}
-else {
-    console.log('error on connecting blockchain');
-}
 
 export default app;
