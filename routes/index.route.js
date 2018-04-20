@@ -1,4 +1,5 @@
 import express from 'express';
+import productRoute from './product.route';
 
 // import authRoutes from './auth.route';
 
@@ -9,6 +10,6 @@ router.get('/check', (req, res) =>
   res.send('Hello hooman!')
 );
 
-// router.use('/user', userRoutes);
+router.use('/product', productRoute);
 
 export default router;

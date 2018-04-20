@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable()
 export class CoreService {
     userUrl = '/api/users';
-    candidateUrl = '/api/candidates';
+    productsUrl = '/api/product';
     constructor(private _http: HttpClient) { }
 
     login(name: string, id: string): Observable<any> {
@@ -27,11 +27,11 @@ export class CoreService {
                     });
     }
 
-    getCandidates(): Observable<any> {
-        return this._http.get(this.candidateUrl + '/list', httpOptions)
+    getProducts(): Observable<any> {
+        return this._http.get(this.productsUrl + '/list', httpOptions)
                     .map((response: Response) => {
-                        const candidates = response;
-                        return candidates;
+                        const products = response;
+                        return products;
                     });
     }
 

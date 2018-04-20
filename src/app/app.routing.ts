@@ -17,7 +17,7 @@ import { ProductDetailComponent } from './home/components/product-detail.compone
                     path: '', component: HomeComponent,
                     children: [
                         {
-                            path: 'productsList', component: ProductsComponent,
+                            path: '', component: ProductsComponent,
                             children: [{
                                 path: 'productDetail/:id', component: ProductDetailComponent
                             }]
@@ -25,7 +25,7 @@ import { ProductDetailComponent } from './home/components/product-detail.compone
                     ]
                 }
             ],
-            { enableTracing: true })
+            { enableTracing: false })
     ],
     exports: [
         RouterModule

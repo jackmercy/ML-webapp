@@ -15,12 +15,12 @@ var app = express();
 var port = process.env.port || 5000;
 /* Init variable */
 
-/*/!* MongoDb *!/
+/* MongoDb */
 var db;
-db = mongoose.connect('mongodb://localhost/voting-dapp')
+db = mongoose.connect('mongodb://localhost/ML-web-app')
     .then(() =>  console.log('connection succesful to mongodb'))
     .catch((err) => console.error(err));
-/!* MongoDb *!/*/
+/* MongoDb */
 
 /* Utility package */
 // app.use(logger('dev'));
