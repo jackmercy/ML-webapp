@@ -2,7 +2,7 @@
     <div class="items">
         <div class="item" *ngFor="let movie of moviesList">
             <a>
-                <img *ngIf="movie.poster_path" src="{{ movie['poster_path'] }}" alt="poster movie">
+                <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
                 <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
             </a>
             <h3 class="movie-title">{{movie.title}}</h3>

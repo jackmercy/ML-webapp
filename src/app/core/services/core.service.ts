@@ -16,6 +16,10 @@ const httpOptions = {
 export class CoreService {
     userUrl = '/api/users';
     movieUrl = '/api/movie';
+    apiKey = '431bc17da732dfb3be082e58f7a5cf27';
+    baseUrl = 'https://api.themoviedb.org/3/movie/';
+    config = '&language=en-US';
+
     constructor(private _http: HttpClient) { }
 
     login(name: string, id: string): Observable<any> {
@@ -33,6 +37,11 @@ export class CoreService {
                         const movies = response;
                         return movies;
                    });
+    }
+
+    // Connect to The Movie Database
+    getMovieDetail(id: String): Observable<any> {
+        return this._http.get(this.baseUrl + id + '?api_key=' + this.apiKey + this.config);
     }
 
 }

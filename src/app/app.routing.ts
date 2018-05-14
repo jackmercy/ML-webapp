@@ -9,6 +9,7 @@ import { RegisterComponent } from './public/components/register.component';
 /* Home */
 import { HomeComponent } from './home/components/home.component';
 import { MovieListComponent } from './home/components/movie-list.component';
+import { MovieDetailComponent } from "./home/components/movie-detail.component";
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -16,7 +17,10 @@ import { MovieListComponent } from './home/components/movie-list.component';
                     path: '', component: HomeComponent,
                     children: [
                         {
-                            path: '', component: MovieListComponent
+                            path: '', component: MovieListComponent,
+                        },
+                        {
+                            path: 'movie/:id', component: MovieDetailComponent,
                         }
                     ]
                 }

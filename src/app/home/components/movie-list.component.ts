@@ -15,8 +15,6 @@ export class MovieListComponent implements OnInit {
     ngOnInit() {
         this._coreService.getMovies().subscribe(data => {
             this.moviesList = data;
-            this.moviesList.map(movie =>
-                movie.poster_path = this.posterUrl + movie.poster_path);
         });
     }
 
