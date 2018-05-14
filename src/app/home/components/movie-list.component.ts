@@ -7,12 +7,17 @@ import { CoreService } from '../../core/services/core.service';
     styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
-    moviesList = [];
+    moviesList = new Array<Movie>();
+    posterUrl = 'https://image.tmdb.org/t/p/w185/';
 
     constructor(private _coreService: CoreService) { }
 
     ngOnInit() {
-        this._coreService.getMovies().subscribe(data => this.moviesList = data);
+        this._coreService.getMovies().subscribe(data => {
+            this.moviesList = data;
+            this.moviesList.map(movie =>
+                movie.poster_path = this.posterUrl + movie.poster_path);
+        });
     }
 
 }

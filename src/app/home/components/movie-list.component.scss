@@ -17,3 +17,32 @@
 .btn-read-more {
     margin-left: 65%;
 }
+
+.poster {
+    height: auto;
+    width: auto;
+    height: 278px;
+    width: 185px;
+}
+
+.items {
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.items .item {
+    position: relative;
+    margin: 1rem .625rem;
+    width: 200px;
+    text-align: center;
+}
+
+.movie-title {
+    margin: 15px 0 5px;
+    color: #ff424f;
+    display: block;
+    font-size: 1.17em;
+}

@@ -29,10 +29,10 @@ export class CoreService {
 
     getMovies(): Observable<any> {
         return this._http.get(this.movieUrl + '/list', httpOptions)
-                    .map((response: Response) => {
+                    .map((response) => {
                         const movies = response;
                         return movies;
-                    });
+                   });
     }
 
 }
