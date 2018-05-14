@@ -8,8 +8,7 @@ import { LoginComponent } from './public/components/login.component';
 import { RegisterComponent } from './public/components/register.component';
 /* Home */
 import { HomeComponent } from './home/components/home.component';
-import {ProductsComponent} from './home/components/products.component';
-import { ProductDetailComponent } from './home/components/product-detail.component';
+import { MovieListComponent } from './home/components/movie-list.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -17,10 +16,7 @@ import { ProductDetailComponent } from './home/components/product-detail.compone
                     path: '', component: HomeComponent,
                     children: [
                         {
-                            path: '', component: ProductsComponent,
-                            children: [{
-                                path: 'productDetail/:id', component: ProductDetailComponent
-                            }]
+                            path: '', component: MovieListComponent
                         }
                     ]
                 }
