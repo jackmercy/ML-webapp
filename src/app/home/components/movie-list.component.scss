@@ -1,3 +1,5 @@
+@import '../../../assets/scss/palette';
+
 .example-card {
     /* background-color: lightblue; */
 }
@@ -19,10 +21,11 @@
 }
 
 .poster {
-    height: auto;
-    width: auto;
     height: 278px;
     width: 185px;
+    height: auto;
+    width: auto;
+
 }
 
 .items {
@@ -42,7 +45,41 @@
 
 .movie-title {
     margin: 15px 0 5px;
-    color: #ff424f;
+    color: $primary-light;
     display: block;
     font-size: 1.17em;
 }
+
+.voting-grid {
+    background-color: $black;
+}
+
+.voting-grid /deep/ {
+    .ngx-pagination {
+        text-align: center;
+    }
+
+    .ngx-pagination .current {
+        background-color: $primary-light !important;
+        font-weight: 500;
+    }
+
+    .ngx-pagination .disabled {
+        color: grey !important;
+        font-weight: 500;
+    }
+
+    .ngx-pagination a:hover, .ngx-pagination button:hover {
+        background-color: $primary-light !important;
+        color: $white !important;
+    }
+
+    .ngx-pagination a, .ngx-pagination button {
+        color: $primary-light !important;
+        font-weight: 500;
+    }
+}
+
+
+
+

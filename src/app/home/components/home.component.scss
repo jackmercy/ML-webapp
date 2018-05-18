@@ -1,4 +1,9 @@
+@import "../../../assets/scss/palette";
+
 .container-home {
       padding: 0;
-      background-color: #141414;
+      background-color: $black;
   }
+.mat-drawer-modify {
+    background-color: $black;
+}

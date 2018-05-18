@@ -5,14 +5,23 @@ import { RouterModule } from '@angular/router';
 import { CoreService } from './services/core.service';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './components/navbar.component';
+import { SidebarComponent } from './components/sidebar.component';
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule
-  ],
-  declarations: [NavbarComponent],
-  exports: [NavbarComponent],
-  providers: [CoreService]
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule
+    ],
+    declarations: [
+        NavbarComponent,
+        SidebarComponent
+    ],
+    exports: [
+        NavbarComponent,
+
+        SidebarComponent],
+    providers: [
+        CoreService
+    ]
 })
 export class CoreModule { }

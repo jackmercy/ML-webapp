@@ -22,39 +22,43 @@ import {
     MatToolbarModule,
     MatSnackBarModule,
     MatMenuModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTabsModule
 } from '@angular/material';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
-  imports: [
-      CommonModule
-  ],
-  exports: [
-    CommonModule,
-    BrowserAnimationsModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
+    imports: [
+        CommonModule,
+    ],
+    exports: [
+        CommonModule,
+        BrowserAnimationsModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
 
-    MatFormFieldModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatDialogModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatSnackBarModule,
-    MatMenuModule,
-    MatGridListModule
-  ],
+        MatFormFieldModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatIconModule,
+        MatDialogModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatListModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatSnackBarModule,
+        MatMenuModule,
+        MatGridListModule,
+        MatTabsModule,
+        NgxPaginationModule
+    ],
 
-  declarations: []
+    declarations: []
 })
 export class SharedModule { }

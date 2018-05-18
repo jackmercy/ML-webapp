@@ -1,11 +1,45 @@
 <div class="voting-grid">
     <div class="items">
-        <div class="item" *ngFor="let movie of moviesList">
-            <a>
+        <div class="item"
+             *ngFor="let movie of moviePage | paginate: { itemsPerPage: moviePage.length,
+                                                           currentPage: currentPage,
+                                                           totalItems: totalMovies }">
+            <a [routerLink]="['/movie', movie.id]">
                 <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
                 <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
             </a>
             <h3 class="movie-title">{{movie.title}}</h3>
         </div>
     </div>
+    <!--$event return the number of current page-->
+    <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+<!--    <footer class="pagination">
+        <nav>
+            <ul>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(parameter, 1)">
+                        <mat-icon>first_page</mat-icon>
+                    </a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(parameter, pager.currentPage - 1)">
+                        <mat-icon>chevron_left</mat-icon>
+                    </a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{disabled:pager.currentPage === page}">
+                    <a (click)="setPage(parameter, page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(parameter, pager.currentPage + 1)">
+                        <mat-icon>chevron_right</mat-icon>
+                    </a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(parameter, pager.totalPages)">
+                        <mat-icon>last_page</mat-icon>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>-->
 </div>

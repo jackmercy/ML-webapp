@@ -7,5 +7,6 @@ const router = express.Router();
 
 router.route('/list').get(movieController.getMovieList);
 router.route('/detail').get(movieController.getMovieDetail);
+router.route('/total').get(movieController.getTotalMovie);
 
 export default router;

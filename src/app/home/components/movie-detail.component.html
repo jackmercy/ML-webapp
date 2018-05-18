@@ -1,3 +1,4 @@
+<!--movie panel-->
 <div class="movie">
     <div class="movie--background">
         <div class="image-rotator" *ngIf="movie['backdrop_path']"
@@ -31,3 +32,49 @@
         <p class="movie--overview">{{movie['overview']}}</p>
     </div>
 </div>
+<!--End movie panel-->
+
+<!--Info tab-->
+<mat-tab-group class="movie__tab">
+    <!--Cast-->
+    <mat-tab label="CAST">
+        <div class="movie--cast">
+            <mat-nav-list *ngFor="let person of cast">
+                <a mat-list-item>
+                <!--<a mat-list-item [routerLink]="['/star', person.id]">-->
+                    <div class="icon-container"
+                         matListAvatar [ngStyle]="{'background-image': 'url('+'https://image.tmdb.org/t/p/original'+person['profile_path']+')'}">
+                        <mat-icon *ngIf="!person['profile_path']" class="icon-person">person</mat-icon>
+                    </div>
+                    <h3 matLine>{{person['name']}}</h3>
+                    <p matLine>{{person['character']}}</p>
+                </a>
+            </mat-nav-list>
+        </div>
+    </mat-tab>
+    <!--End Cast-->
+
+    <!--<mat-tab label="{{'movie.Trailer'}}">
+        <section class="movie&#45;&#45;trailer" *ngIf="safeUrl; else noTrailer">
+            <iframe width="560" height="315" [src]="safeUrl" frameborder="0" allowfullscreen></iframe>
+        </section>
+        <ng-template #noTrailer>
+            <h3>{{'movie.No trailer'}}
+                <mat-icon>sentiment_very_dissatisfied</mat-icon>
+            </h3>
+        </ng-template>
+    </mat-tab>-->
+    <!--<mat-tab label="{{'movie.Similar'}}">
+        <section class="movie&#45;&#45;similar items" *ngIf="similarmovies">
+            <div class="item" *ngFor="let movie of similarmovies">
+                <a [routerLink]="['/movies/movie', movie.id]">
+                    <img *ngIf="movie.poster_path"
+                         alt="poster movie">
+                    <img *ngIf="!movie.poster_path" src="assets/images/no_poster_available.jpg" alt="No poster available">
+                    <h3>{{movie.title}}</h3>
+                </a>
+            </div>
+        </section>
+    </mat-tab>-->
+</mat-tab-group>
+<!--End Info tab-->

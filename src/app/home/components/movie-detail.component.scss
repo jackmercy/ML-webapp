@@ -133,6 +133,7 @@
 
 .movie {
     &__tab {
+        background-color: $black;
         .movie {
             &--cast {
                 a.mat-list-item {

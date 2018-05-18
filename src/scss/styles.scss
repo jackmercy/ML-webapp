@@ -1,14 +1,150 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '../assets/scss/custom_theme';
+@import '../assets/scss/palette';
 
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none !important;
+html {
+    box-sizing: border-box;
 }
 
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+html,
 body {
-    background-color: gray;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    background-color: $white;
+}
+
+/* Launcher */
+.launcher {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: $primary-light;
+    outline: none;
+}
+a, button {
+    &:focus, &:active {
+        outline: none;
+    }
+}
+li {
+    list-style: none;
+}
+h1,
+h2,
+h3,
+h4 {
+    font-weight: normal;
+    text-align: center;
+    color: $white;
+}
+.material-icons {
+    vertical-align: middle;
+}
+.mat-dialog-actions {
+    color: $primary-light;
+}
+.mat {
+    &-menu-item {
+        color: $primary-light;
+    }
+}
+.mat-tab {
+    &-labels {
+        justify-content: center;
+    }
+    &-label {
+        color: $white;
+        opacity: 1 !important;
+    }
+    &-header-pagination-chevron {
+        border-color: white;
+    }
+}
+
+/* img poster movie */
+.icon-container {
+    background-position: center;
+    background-size: cover;
+    border: 1px solid $primary-light;
+    line-height: 2;
+
+    .icon-person, .icon-movie {
+        color: $primary-light;
+    }
+}
+
+/* Dialog */
+h1.mat-dialog-title {
+    color: $black;
+}
+
+/* Column Flex */
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .item {
+        position: relative;
+        margin: 1rem .625rem;
+        width: 200px;
+        text-align: center;
+
+        a {
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+        .btn-add {
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+/* Pagination */
+.pagination {
+    ul {
+        -webkit-padding-start: 0;
+    }
+    li {
+        display: inline-block;
+        padding: 0 .5rem;
+        vertical-align: middle;
+    }
+    .disabled a {
+        cursor: default;
+        pointer-events: none;
+        color: $grey;
+    }
+}
+
+/* spinner */
+.loading-shade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(34, 43, 49, 0.5);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media only screen and (min-width: 731px){
+        left: 208px;
+    }
 }

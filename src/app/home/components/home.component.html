@@ -1,5 +1,21 @@
+<!--Top bar-->
 <app-navbar></app-navbar>
+<!--End Top bar-->
+
 <div class="container-fluid container-home h-100">
-    <!-- Main content -->
-    <router-outlet></router-outlet>
+    <mat-drawer-container class="mat-drawer-modify">
+
+        <!--Sidebar-->
+        <mat-drawer>
+            <app-sidebar></app-sidebar>
+        </mat-drawer>
+        <!--End Sidebar-->
+
+        <!-- Main content -->
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+        <!--End content-->
+    </mat-drawer-container>
+
 </div>
