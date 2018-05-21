@@ -10,3 +10,16 @@
 .nav-item-text {
     font-size: 16px;
 }
+
+.navbar-brand {
+    float: left;
+}
+
+.navbar-right {
+    padding-right: 2rem;
+}
+
+.log-out:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

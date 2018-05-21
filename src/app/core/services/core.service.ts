@@ -8,9 +8,9 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
 const httpOptions = {
-  headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-  })
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+    })
 };
 
 @Injectable()
@@ -34,18 +34,37 @@ export class CoreService {
             });
     }
 
-   logout(): void {
+    logout(): void {
         sessionStorage.removeItem('currentUser');
+    }
+
+    isLogin(): boolean {
+        const user = JSON.parse(sessionStorage.getItem('currentUser'));
+        if (user) {
+            return true;
+        } else { return false; }
+    }
+
+    getCurrentUser(): Object {
+        const user = JSON.parse(sessionStorage.getItem('currentUser'));
+        if (user) {
+            return user;
+        } else {
+            const message = {
+                message: 'Please log in'
+            };
+            return message;
+        }
     }
 
     // Return a list of movies for a page
     getMoviePage(page: Number, perPage: Number): Observable<any> {
         return this._http.get(`${this.movieUrl}/list?page=${page}&perPage=${perPage}`,
             httpOptions)
-                    .map((response) => {
-                        const movies = response;
-                        return movies;
-                   });
+            .map((response) => {
+                const movies = response;
+                return movies;
+            });
     }
 
     // Connect to The Movie Database

@@ -25,7 +25,8 @@ function postLogin(req, res) {
         } else if(user) {
             res.status(200);
             const res_user = {
-                id: user.id
+                id: user.id,
+                name: user.name
             }
             res.json(res_user);
         } else {

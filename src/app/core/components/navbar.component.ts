@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoreService } from '../services/core.service';
 
 declare interface RouteInfo {
     path: string;
@@ -19,10 +20,22 @@ export const ROUTES: RouteInfo[] = [
 export class NavbarComponent implements OnInit {
     brandName = 'Good Film';
     menuItems: any[];
-    constructor() { }
+    isLogin: boolean;
+    user: Object = {};
+
+    constructor(private _coreService: CoreService) { }
 
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.isLogin = this._coreService.isLogin();
+        if (this.isLogin) {
+            this.user = this._coreService.getCurrentUser();
+        }
+    }
+    
+    logOut(): void {
+        this._coreService.logout();
+        this.isLogin = false;
     }
 
 }
