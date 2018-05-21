@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../../core/services/core.service';
+import { ParamMap } from "@angular/router";
 
 @Component({
     selector: 'app-movie-list',
@@ -16,6 +17,7 @@ export class MovieListComponent implements OnInit {
     constructor(private _coreService: CoreService) { }
 
     ngOnInit() {
+
         this.perPage = 20;
         this._coreService.getMoviePage(this.currentPage, this.perPage).subscribe(data => {
             this.moviePage = data;

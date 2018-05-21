@@ -21,23 +21,23 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginFormGroup = this._formBuilder.group({
-            name: ['', Validators.required],
-            id: ['', Validators.required]
+            userId: ['', Validators.required],
+            userPassword: ['', Validators.required]
         });
         // this._coreService.getAllUser().subscribe( data => console.log(data));
         this.canDisableSignInButton = false;
     }
 
     onLogin() {
-        this._coreService.login(this.citizenName.value, this.citizenID.value)
+        this._coreService.login(this.userId.value, this.userPassword.value)
             .subscribe(
                 data => {
                     if (data.message) {
                         this.snackBar.open(data.message , 'Got it', {
-                            duration: 30000,
+                            duration: 3000,
                         });
-                    } else if (data.name && data.id) {
-                        this._router.navigate(['/home/voting']);
+                    } else if (data.id) {
+                        this._router.navigate(['']);
                     }
 
                 },
@@ -51,20 +51,20 @@ export class LoginComponent implements OnInit {
         this._router.navigate(['/register']);
     }
 
-    get citizenName() {
-        return this.loginFormGroup.get('name');
+    get userId() {
+        return this.loginFormGroup.get('userId');
     }
 
-    get citizenID() {
-        return this.loginFormGroup.get('id');
-    }
-
-    getNameErrorMessage() {
-        return this.citizenName.hasError('required') ? 'Mandatory information' : '';
+    get userPassword() {
+        return this.loginFormGroup.get('userPassword');
     }
 
     getIdErrorMessage() {
-        return this.citizenID.hasError('required') ? 'Mandatory information' : '';
+        return this.userId.hasError('required') ? 'Mandatory information' : '';
+    }
+
+    getPasswordErrorMessage() {
+        return this.userPassword.hasError('required') ? 'Mandatory information' : '';
     }
 
 }

@@ -15,7 +15,7 @@ const httpOptions = {
 
 @Injectable()
 export class CoreService {
-    userUrl = '/api/users';
+    userUrl = '/api/user';
     movieUrl = '/api/movie';
     apiKey = '431bc17da732dfb3be082e58f7a5cf27';
     baseUrl = 'https://api.themoviedb.org/3/movie/';
@@ -23,15 +23,21 @@ export class CoreService {
 
     constructor(private _http: HttpClient) { }
 
-    login(name: string, id: string): Observable<any> {
-        return this._http.post(this.userUrl + '/login', JSON.stringify({name: name, id: id}), httpOptions)
-                    .map((response: Response) => {
-                        const user = response;
-                        /* write to session storage here */
-                        return user;
-                    });
+    login(id: string, password: string): Observable<any> {
+        return this._http.post(this.userUrl + '/login',
+            JSON.stringify({id: id, password: password}), httpOptions)
+            .map((response: Response) => {
+                const user = response;
+                /* write to session storage here */
+                sessionStorage.setItem('currentUser', JSON.stringify(user));
+                return user;
+            });
     }
-    
+
+   logout(): void {
+        sessionStorage.removeItem('currentUser');
+    }
+
     // Return a list of movies for a page
     getMoviePage(page: Number, perPage: Number): Observable<any> {
         return this._http.get(`${this.movieUrl}/list?page=${page}&perPage=${perPage}`,

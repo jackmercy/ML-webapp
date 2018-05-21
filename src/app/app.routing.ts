@@ -9,7 +9,8 @@ import { RegisterComponent } from './public/components/register.component';
 /* Home */
 import { HomeComponent } from './home/components/home.component';
 import { MovieListComponent } from './home/components/movie-list.component';
-import { MovieDetailComponent } from "./home/components/movie-detail.component";
+import { MovieDetailComponent } from './home/components/movie-detail.component';
+import { MovieComponent } from './home/components/movie.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -17,10 +18,33 @@ import { MovieDetailComponent } from "./home/components/movie-detail.component";
                     path: '', component: HomeComponent,
                     children: [
                         {
-                            path: '', component: MovieListComponent,
+                            path: '',
+                            redirectTo: 'movie',
+                            pathMatch: 'full'
                         },
                         {
-                            path: 'movie/:id', component: MovieDetailComponent,
+                            path: 'movie', component: MovieComponent,
+                            children: [
+                                {
+                                    path: '',
+                                    redirectTo: 'list',
+                                    pathMatch: 'full'
+                                },
+                                {
+                                    path: 'list', component: MovieListComponent,
+                                },
+                                {
+                                    path: ':id', component: MovieDetailComponent
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    path: 'login', component: PublicComponent,
+                    children: [
+                        {
+                            path: '', component: LoginComponent
                         }
                     ]
                 }

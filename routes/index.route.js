@@ -1,6 +1,7 @@
 import express from 'express';
 import productRoute from './product.route';
-import movieRoute from './movie.route'
+import movieRoute from './movie.route';
+import userRoute from './user.route';
 
 // import authRoutes from './auth.route';
 
@@ -13,6 +14,7 @@ router.get('/check', (req, res) =>
 
 router.use('/product', productRoute);
 router.use('/movie', movieRoute);
+router.use('/user', userRoute);
 
 
 export default router;

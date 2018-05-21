@@ -54,17 +54,17 @@
     </mat-tab>
     <!--End Cast-->
 
-    <!--<mat-tab label="{{'movie.Trailer'}}">
+<!--    <mat-tab label="TRAILER">
         <section class="movie&#45;&#45;trailer" *ngIf="safeUrl; else noTrailer">
             <iframe width="560" height="315" [src]="safeUrl" frameborder="0" allowfullscreen></iframe>
         </section>
         <ng-template #noTrailer>
-            <h3>{{'movie.No trailer'}}
+            <h3>No trailer is available
                 <mat-icon>sentiment_very_dissatisfied</mat-icon>
             </h3>
         </ng-template>
     </mat-tab>-->
-    <!--<mat-tab label="{{'movie.Similar'}}">
+<!--    <mat-tab label="{{'movie.Similar'}}">
         <section class="movie&#45;&#45;similar items" *ngIf="similarmovies">
             <div class="item" *ngFor="let movie of similarmovies">
                 <a [routerLink]="['/movies/movie', movie.id]">

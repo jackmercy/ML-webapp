@@ -6,6 +6,7 @@ import { CoreModule } from '../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { MovieListComponent } from './components/movie-list.component';
 import { MovieDetailComponent } from './components/movie-detail.component';
+import { MovieComponent } from './components/movie.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -18,7 +19,8 @@ import { MovieDetailComponent } from './components/movie-detail.component';
     declarations: [
         HomeComponent,
         MovieListComponent,
-        MovieDetailComponent
+        MovieDetailComponent,
+        MovieComponent
     ]
 })
 export class HomeModule { }
