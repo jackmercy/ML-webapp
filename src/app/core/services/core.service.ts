@@ -62,7 +62,11 @@ export class CoreService {
         return this._http.get(`${this.movieUrl}/list?page=${page}&perPage=${perPage}`,
             httpOptions)
             .map((response) => {
-                const movies = response;
+                const movieIds = _.clone(response);
+                const movies: Array<Object> = [];
+                movieIds.map(object => {
+                    this.getMovieDetail(object['id']).subscribe(result => movies.push(result));
+                });
                 return movies;
             });
     }

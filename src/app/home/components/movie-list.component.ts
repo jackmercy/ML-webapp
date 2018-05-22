@@ -21,10 +21,10 @@ export class MovieListComponent implements OnInit {
         this.perPage = 20;
         this._coreService.getMoviePage(this.currentPage, this.perPage).subscribe(data => {
             this.moviePage = data;
+            console.log(data);
         });
         this._coreService.getTotalMovie().subscribe(data => {
             this.totalMovies = data;
-            console.log(this.totalMovies);
         });
     }
 

@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
     logOut(): void {
         this._coreService.logout();
         this.isLogin = false;
+        this.user = {};
     }
 
 }
