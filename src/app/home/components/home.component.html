@@ -2,20 +2,20 @@
 <app-navbar></app-navbar>
 <!--End Top bar-->
 
-<div class="container-fluid container-home h-100">
-    <mat-drawer-container class="mat-drawer-modify">
+<div class="container-fluid container-home">
+    <div class="mat-drawer-modify">
 
         <!--Sidebar-->
-        <mat-drawer>
+        <div>
             <app-sidebar></app-sidebar>
-        </mat-drawer>
+        </div>
         <!--End Sidebar-->
 
         <!-- Main content -->
-        <mat-drawer-content>
+        <div>
             <router-outlet></router-outlet>
-        </mat-drawer-content>
+        </div>
         <!--End content-->
-    </mat-drawer-container>
+    </div>
 
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../../core/services/core.service';
-import { ParamMap } from "@angular/router";
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { r } from '@angular/core/src/render3';
 
 @Component({
     selector: 'app-movie-list',
@@ -8,24 +9,46 @@ import { ParamMap } from "@angular/router";
     styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
+    category: String;
+    genresId: Number;
     perPage: Number;
-    currentPage: Number = 1;
+    currentPage: Number;
     totalMovies: Number;
+    isLoading: boolean;
     moviePage = new Array<any>();
     posterUrl = 'https://image.tmdb.org/t/p/w185/';
 
-    constructor(private _coreService: CoreService) { }
+    constructor(private _coreService: CoreService,
+                private _activatedRouter: ActivatedRoute) { }
 
     ngOnInit() {
-
+        this.isLoading = true;
+        this.currentPage = 1;
         this.perPage = 20;
-        this._coreService.getMoviePage(this.currentPage, this.perPage).subscribe(data => {
-            this.moviePage = data;
-            console.log(data);
+
+        this._activatedRouter.queryParams.subscribe((params: ParamMap) => {
+            console.log(params);
+            this.genresId = params['id'];
+            this.totalMovies = 1000 * 20;
+
+            if (this.genresId) {
+                this.category = params['name'];
+                this._coreService.getMovieByGenre(this.genresId, this.currentPage).subscribe(data => {
+                    this.moviePage = data;
+                });
+            } else {
+                // Default page
+                this.category = 'All movie';
+                this._coreService.getMoviePage(this.currentPage, this.perPage).subscribe(data => {
+                    this.moviePage = data;
+                });
+                this._coreService.getTotalMovie().subscribe(data => {
+                    this.totalMovies = data;
+                });
+            }
         });
-        this._coreService.getTotalMovie().subscribe(data => {
-            this.totalMovies = data;
-        });
+
+
     }
 
     getPage(page: Number) {

@@ -37,6 +37,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         FormsModule,
         ReactiveFormsModule,
 
+        MatProgressSpinnerModule,
         MatFormFieldModule,
         MatSelectModule,
         MatButtonModule,

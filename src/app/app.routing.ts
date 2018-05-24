@@ -31,7 +31,11 @@ import { MovieComponent } from './home/components/movie.component';
                                     pathMatch: 'full'
                                 },
                                 {
-                                    path: 'list', component: MovieListComponent,
+                                    path: 'list', component: MovieListComponent
+                                },
+                                {
+                                    path: 'genre',
+                                    component: MovieListComponent
                                 },
                                 {
                                     path: ':id', component: MovieDetailComponent
