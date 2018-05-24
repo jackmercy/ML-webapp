@@ -1,7 +1,17 @@
 @import "../../../assets/scss/palette";
 
+
+/deep/ {
+    .mat-form-field-label {
+        color: white;
+    }
+    .mat-form-field-underline {
+        background-color: white;
+    }
+}
+
 .form-layout {
-    margin-top: 100px;
+    margin-top: 0px;
 }
 
 .col-layout {

@@ -1,0 +1,45 @@
+<div class="navigation">
+    <div>
+        <button mat-button class="navbar-brand" [routerLink]="['']">
+            <img src="/assets/brand/untitled.svg" width="30" height="30" class="d-inline-block align-top middle-brand-text">
+            {{brandName}}
+        </button>
+    </div>
+    <div class="navigation--search">
+        <mat-form-field>
+            <input matInput #search placeholder="Search..."
+                   tabindex="-1">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+    <ul>
+
+    </ul>
+    <ul class="navigation--links">
+        <li>
+            <a class="menu-link" [routerLink]="['/movies/list']" routerLinkActive="active">
+                <mat-icon>local_movies</mat-icon>All movies</a>
+        </li>
+        <li (click)="onMenuClicked()">
+            <a class="menu-link">
+                <mat-icon>date_range</mat-icon>Genres</a>
+        </li>
+        <li class="cancel-hover" *ngIf="isShowingGenre">
+            <ul class="navigation--genre" >
+                <li *ngFor="let genre of genres">
+                    <a class="menu-link genre-title"
+                       [routerLink]="['/movie/genre']" [queryParams]="{ id: genre.id, name: genre.name}">
+                       <mat-icon>date_range</mat-icon>{{genre['name']}}</a>
+                </li>
+                <li>
+                    <a class="menu-link genre-title">
+                        <mat-icon>date_range</mat-icon>Genres</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="menu-link" [routerLink]="['/movies/list', 'discover']" routerLinkActive="active">
+                <mat-icon>whatshot</mat-icon>App.Trending</a>
+        </li>
+    </ul>
+</div>

@@ -1,21 +1,20 @@
 <!--Top bar-->
-<app-navbar></app-navbar>
+<!--<app-navbar></app-navbar>-->
 <!--End Top bar-->
 
 <div class="container-fluid container-home">
-    <div class="mat-drawer-modify">
-
-        <!--Sidebar-->
-        <div>
+    <mat-sidenav-container class="app-sidenav">
+        <mat-sidenav mode="side" opened>
             <app-sidebar></app-sidebar>
-        </div>
-        <!--End Sidebar-->
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="mat-drawer-modify">
+            <!-- Main content -->
+                <router-outlet></router-outlet>
+            <!--End content-->
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 
-        <!-- Main content -->
-        <div>
-            <router-outlet></router-outlet>
-        </div>
-        <!--End content-->
-    </div>
 
 </div>

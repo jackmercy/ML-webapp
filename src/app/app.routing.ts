@@ -41,14 +41,14 @@ import { MovieComponent } from './home/components/movie.component';
                                     path: ':id', component: MovieDetailComponent
                                 }
                             ]
-                        }
-                    ]
-                },
-                {
-                    path: 'login', component: PublicComponent,
-                    children: [
+                        },
                         {
-                            path: '', component: LoginComponent
+                            path: 'login', component: PublicComponent,
+                            children: [
+                                {
+                                    path: '', component: LoginComponent
+                                }
+                            ]
                         }
                     ]
                 }

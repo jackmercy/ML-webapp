@@ -27,10 +27,10 @@ export class MovieListComponent implements OnInit {
         this.perPage = 20;
 
         this._activatedRouter.queryParams.subscribe((params: ParamMap) => {
-            console.log(params);
             this.genresId = params['id'];
             this.totalMovies = 1000 * 20;
-
+            
+            // Page with genres
             if (this.genresId) {
                 this.category = params['name'];
                 this._coreService.getMovieByGenre(this.genresId, this.currentPage).subscribe(data => {
@@ -38,7 +38,7 @@ export class MovieListComponent implements OnInit {
                 });
             } else {
                 // Default page
-                this.category = 'All movie';
+                this.category = 'All movies';
                 this._coreService.getMoviePage(this.currentPage, this.perPage).subscribe(data => {
                     this.moviePage = data;
                 });

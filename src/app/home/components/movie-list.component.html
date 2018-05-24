@@ -9,7 +9,7 @@
                 <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
                 <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
             </a>
-            <h3 class="movie-title">{{movie.title}}</h3>
+            <h3><a class="movie-title" [routerLink]="['/movie', movie.id]">{{movie.title}}</a></h3>
             <div class="movie--genre">
                 <ul>
                     <li *ngFor="let genre of movie['genres']">
