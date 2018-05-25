@@ -53,7 +53,23 @@
         </div>
     </mat-tab>
     <!--End Cast-->
-
+    <!-- Similar movies -->
+    <mat-tab label="SIMILAR MOVIES">
+        <div class="movie--cast">
+            <div class="items">
+                <div class="item"
+                     *ngFor="let movie of similarMovies">
+                    <a [routerLink]="['/movie', movie.id]">
+                        <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
+                        <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
+                    </a>
+                    <h3 class="movie-title">{{movie.title}}</h3>
+                </div>
+        
+            </div>
+        </div>
+    </mat-tab>
+    <!-- End Similar movies -->
 <!--    <mat-tab label="TRAILER">
         <section class="movie&#45;&#45;trailer" *ngIf="safeUrl; else noTrailer">
             <iframe width="560" height="315" [src]="safeUrl" frameborder="0" allowfullscreen></iframe>
