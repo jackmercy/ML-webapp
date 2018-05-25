@@ -1,9 +1,32 @@
 @import "../../../assets/scss/palette";
 
 .container-home {
-      padding: 0;
-      background-color: $black;
-  }
+    padding: 0;
+    background-color: $black;
+    height: 100vh;
+}
 .mat-drawer-modify {
     background-color: $black;
 }
+.app-sidenav {
+    min-height: 100vh;
+    background: $black;
+
+    /deep/ .mat-sidenav {
+        background: $background;
+
+        @media only screen and (max-width: 731px) {
+            position: fixed;
+        }
+
+        &-content {
+            background: inherit;
+        }
+    }
+}
+
+.mat-sidenav {
+    width: 250px;
+}
+
+

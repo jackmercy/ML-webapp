@@ -1,0 +1,177 @@
+@import '../../../assets/scss/palette';
+$menu-padding: 20px;
+
+
+.custom-nav {
+    background-color: #ff424f;
+    color: #fff;
+}
+
+.middle-brand-text {
+    margin-top: 3px;
+}
+
+.nav-item-text {
+    font-size: 16px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    float: left;
+    width: 100%;
+    color: white;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.navbar-right {
+    padding-right: 2rem;
+}
+
+.log-out:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+/* Container principal */
+[id="hub-movies"] {
+    position: relative;
+    text-align: center;
+}
+
+.app-toolbar {
+    display: none;
+
+    &--mobile {
+        display: block;
+    }
+    .mat-toolbar {
+        background-color: $primary-light;
+        color: $white;
+    }
+}
+
+.app-sidenav {
+    min-height: 100vh;
+    background: $black;
+
+    /deep/ .mat-sidenav {
+        background: $background;
+
+        @media only screen and (max-width: 731px) {
+            position: fixed;
+        }
+
+        &-content {
+            background: inherit;
+        }
+    }
+
+}
+
+.navigation {
+    &--search {
+        background: $primary-light;
+        min-height: 3rem;
+        line-height: 3;
+        padding: 16px 0 0 20px;
+
+        /deep/ .mat-input {
+            &-underline {
+                background-color: $white;
+            }
+            &-placeholder,
+            &-element {
+                color: $white;
+            }
+        }
+
+        /deep/ .mat-input-ripple {
+            background: $white;
+        }
+        .mat-icon {
+            color: $white;
+            height: 1.75rem;
+        }
+    }
+
+    &--links {
+        padding-left: 0px;
+        li {
+            min-height: 3rem;
+            line-height: 3;
+
+            &:hover {
+                background-color: $black;
+            }
+
+            &:last-child {
+                color: $white;
+            }
+        }
+        a {
+            display: block;
+            padding: .625rem 0;
+            color: $white;
+            &:hover {
+                color: $primary-light;
+                text-decoration: none;
+            }
+            .mat-icon {
+                height: 1.75rem;
+            }
+        }
+        .active {
+            color: $primary-light;
+        }
+    }
+}
+
+.btn-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: $white;
+    z-index: 3;
+}
+
+/* button return top*/
+[id="btn-returnToTop"] {
+    position: fixed;
+    bottom: 40px;
+    right: 12px;
+    display: none;
+    z-index: 1;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.menu-link {
+    padding-left: $menu-padding !important;
+}
+
+.genre-title {
+    padding-left: $menu-padding + 25px !important;
+}
+
+.navigation--genre {
+    padding-left: 0;
+
+}
+
+.cancel-hover:hover {
+    background-color: $background !important;
+}

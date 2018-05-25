@@ -19,7 +19,6 @@ import { SidebarComponent } from './components/sidebar.component';
     ],
     exports: [
         NavbarComponent,
-
         SidebarComponent],
     providers: [
         CoreService,

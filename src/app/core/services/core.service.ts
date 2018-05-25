@@ -19,6 +19,8 @@ export class CoreService {
     movieUrl = '/api/movie';
     apiKey = '431bc17da732dfb3be082e58f7a5cf27';
     baseUrl = 'https://api.themoviedb.org/3/movie/';
+    movieByGenreUrl = 'https://api.themoviedb.org/3/discover/movie?';
+    getGenreObjectsUrl = 'https://api.themoviedb.org/3/genre/movie/list?';
     config = '&language=en-US';
 
     constructor(private _http: HttpClient) { }
@@ -93,4 +95,44 @@ export class CoreService {
             });
     }
 
+    // Return list of movies that match a genres
+    getMovieByGenre(id: Number, page: Number): Observable<any> {
+        return this._http.get(`${this.movieByGenreUrl}api_key=${this.apiKey}&with_genres=${id}&page=${page}`)
+            .map((response: Response) => {
+                const movies = response['results'];
+                _.forEach(movies, movie => {
+                    let genreObjects;
+                    const genreIds = movie['genre_ids'];
+
+                    this.getGenreById(genreIds).subscribe(result => {
+                        genreObjects = result;
+                        movie['genres'] = genreObjects;
+                    });
+                });
+                return movies;
+            })
+            .catch(error => error['errors']);
+    }
+
+    // Return list of genres object by genre id (with id and name)
+    getGenreById(genreIds: Array<any>): Observable<any[]> {
+        let genreObjects: Array<any>;
+        return this._http.get(`${this.getGenreObjectsUrl}api_key=${this.apiKey}`)
+            .map(data => {
+                genreObjects = data[ 'genres' ]; // get list of available genres
+                const result: Array<Object> = [];
+
+                _.forEach(genreIds, (_id) => {
+                    const found = _.find(genreObjects, {id: _id});
+                    result.push(found);
+                });
+                return result;
+            });
+    }
+
+    // Return all genres
+    getGenres(): Observable<any> {
+        return this._http.get(`${this.getGenreObjectsUrl}api_key=${this.apiKey}`)
+            .map((response: Response) => response['genres']);
+    }
 }
