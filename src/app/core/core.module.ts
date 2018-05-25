@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { CoreService } from './services/core.service';
+import { RecommendService } from './services/recommend.service';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './components/navbar.component';
 import { SidebarComponent } from './components/sidebar.component';
@@ -20,7 +21,8 @@ import { SidebarComponent } from './components/sidebar.component';
         NavbarComponent,
         SidebarComponent],
     providers: [
-        CoreService
+        CoreService,
+        RecommendService
     ]
 })
 export class CoreModule { }
