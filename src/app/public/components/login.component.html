@@ -9,12 +9,12 @@
             <form [formGroup]="loginFormGroup" class="from-group">
                 <!-- ID -->
                 <mat-form-field class="full-width-input">
-                    <input matInput placeholder="User ID" formControlName="userId">
+                    <input class="sign-in-input" matInput placeholder="User ID" formControlName="userId">
                     <mat-error *ngIf="userId.invalid">{{getIdErrorMessage()}}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="full-width-input">
-                    <input type="password" matInput placeholder="Password" formControlName="userPassword">
+                    <input class="sign-in-input" type="password" matInput placeholder="Password" formControlName="userPassword">
                     <mat-error *ngIf="userPassword.invalid">{{getPasswordErrorMessage()}}</mat-error>
                 </mat-form-field>
 
