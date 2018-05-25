@@ -3,10 +3,26 @@
 
 /deep/ {
     .mat-form-field-label {
-        color: white;
+        color: white !important;
     }
-    .mat-form-field-underline {
+
+    .mat-form-field-underline,
+    .mat-form-field-ripple,
+    .mat-focus .mat-form-field-label {
         background-color: white;
+    }
+
+}
+
+.sign-in {
+    color: white !important;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid $primary-light;
+    width: 100%;
+    &:disabled {
+        color: gray !important;
+        border: 1px solid gray;
     }
 }
 
@@ -47,8 +63,15 @@
     cursor: pointer;
     text-decoration: underline;
     color: #0366d6;
+    }
 }
+
+.welcome-div {
+    text-align: center;
+    color: $primary-light;
 }
+
+
 /* atom */
 @keyframes atom {
     from { transform: none; }
