@@ -6,6 +6,8 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -23,7 +25,12 @@ export class CoreService {
     getGenreObjectsUrl = 'https://api.themoviedb.org/3/genre/movie/list?';
     config = '&language=en-US';
 
-    constructor(private _http: HttpClient) { }
+    isSignIn: BehaviorSubject<Boolean>;
+
+    constructor(private _http: HttpClient) {
+        this.isSignIn = new BehaviorSubject<Boolean>(false);
+        // this.isSignIn.next(false);
+    }
 
     login(id: string, password: string): Observable<any> {
         return this._http.post(this.userUrl + '/login',
@@ -31,12 +38,14 @@ export class CoreService {
             .map((response: Response) => {
                 const user = response;
                 /* write to session storage here */
+                this.isSignIn.next(true);
                 sessionStorage.setItem('currentUser', JSON.stringify(user));
                 return user;
             });
     }
 
     logout(): void {
+        this.isSignIn.next(false);
         sessionStorage.removeItem('currentUser');
     }
 

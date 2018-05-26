@@ -16,6 +16,10 @@
 
     </ul>
     <ul class="navigation--links">
+        <li *ngIf="isLogin">
+            <a class="menu-link">
+                <mat-icon>local_movies</mat-icon> Movies for you</a>
+        </li>
         <li>
             <a class="menu-link" [routerLink]="['/movie/list']" routerLinkActive="active">
                 <mat-icon>local_movies</mat-icon> All movies</a>

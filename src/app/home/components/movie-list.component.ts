@@ -29,12 +29,13 @@ export class MovieListComponent implements OnInit {
         this._activatedRouter.queryParams.subscribe((params: ParamMap) => {
             this.genresId = params['id'];
             this.totalMovies = 1000 * 20;
-            
+
             // Page with genres
             if (this.genresId) {
                 this.category = params['name'];
                 this._coreService.getMovieByGenre(this.genresId, this.currentPage).subscribe(data => {
                     this.moviePage = data;
+                    console.log(this.moviePage);
                 });
             } else {
                 // Default page
