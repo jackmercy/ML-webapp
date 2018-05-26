@@ -16,13 +16,13 @@
 
     </ul>
     <ul class="navigation--links">
-        <li *ngIf="isLogin">
-            <a class="menu-link">
-                <mat-icon>local_movies</mat-icon> Movies for you</a>
-        </li>
         <li>
             <a class="menu-link" [routerLink]="['/movie/list']" routerLinkActive="active">
                 <mat-icon>local_movies</mat-icon> All movies</a>
+        </li>
+        <li *ngIf="isLogin">
+            <a class="menu-link" [routerLink]="['/movies-for-you']" routerLinkActive="active">
+                <mat-icon>movie_filter</mat-icon> Movies for you</a>
         </li>
         <li (click)="onMenuClicked()">
             <a class="menu-link">
@@ -46,6 +46,14 @@
         <li>
             <a class="menu-link" [routerLink]="['/movies/list', 'discover']" routerLinkActive="active">
                 <mat-icon>whatshot</mat-icon> App.Trending</a>
+        </li>
+        <li *ngIf="!isLogin">
+            <a class="menu-link" [routerLink]="['/login']">
+                <mat-icon>layers</mat-icon> Sign in</a>
+        </li>
+        <li *ngIf="isLogin">
+            <a class="menu-link" (click)="onSignOutClicked()">
+                <mat-icon>layers_clear</mat-icon> Sign out</a>
         </li>
     </ul>
 </div>

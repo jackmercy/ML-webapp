@@ -15,11 +15,17 @@ const httpOptions = {
 export class RecommendService {
     private baseUri = 'http://localhost:5050/api';
     private contentBasedUri = '/content-based/prediction';
-
+    private linearRegression = '/linear-regression/prediction';
     constructor(private _http: HttpClient) { }
 
     getRecommendationBaseOnContent(movieId: String): Observable<any> {
         return this._http.post(this.baseUri + this.contentBasedUri,
             JSON.stringify({id: movieId}), httpOptions);
+    }
+
+    getRecommendationBaseOnUser(userId: String): Observable<any> {
+        const user = JSON.parse(sessionStorage.getItem('currentUser'));
+        return this._http.post(this.baseUri + this.linearRegression,
+            JSON.stringify({userId: user['id']}), httpOptions);
     }
 }

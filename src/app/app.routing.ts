@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-
+/* Guards */
+import { AuthGuard } from './core/guards/auth.guard';
 /* Public */
 import { PublicComponent } from './public/components/public.component';
 import { LoginComponent } from './public/components/login.component';
@@ -11,6 +12,7 @@ import { HomeComponent } from './home/components/home.component';
 import { MovieListComponent } from './home/components/movie-list.component';
 import { MovieDetailComponent } from './home/components/movie-detail.component';
 import { MovieComponent } from './home/components/movie.component';
+import { MoviesForYouComponent } from './home/components/movies-for-you.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -49,6 +51,9 @@ import { MovieComponent } from './home/components/movie.component';
                                     path: '', component: LoginComponent
                                 }
                             ]
+                        },
+                        {
+                            path: 'movies-for-you', canActivate: [AuthGuard] , component: MoviesForYouComponent
                         }
                     ]
                 }

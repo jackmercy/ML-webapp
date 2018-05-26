@@ -1,7 +1,9 @@
 @import '../../../assets/scss/palette';
 $menu-padding: 20px;
 
-
+::-webkit-scrollbar {
+    display: none;
+}
 .custom-nav {
     background-color: #ff424f;
     color: #fff;

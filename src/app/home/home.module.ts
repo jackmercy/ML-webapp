@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MovieListComponent } from './components/movie-list.component';
 import { MovieDetailComponent } from './components/movie-detail.component';
 import { MovieComponent } from './components/movie.component';
+import { MoviesForYouComponent } from './components/movies-for-you.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -20,7 +21,8 @@ import { MovieComponent } from './components/movie.component';
         HomeComponent,
         MovieListComponent,
         MovieDetailComponent,
-        MovieComponent
+        MovieComponent,
+        MoviesForYouComponent
     ]
 })
 export class HomeModule { }

@@ -29,4 +29,8 @@ export class SidebarComponent implements OnInit {
         this.isShowingGenre = !this.isShowingGenre;
     }
 
+    onSignOutClicked() {
+        this._coreService.logout();
+    }
+
 }

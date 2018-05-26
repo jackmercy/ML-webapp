@@ -7,6 +7,8 @@ import { RecommendService } from './services/recommend.service';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './components/navbar.component';
 import { SidebarComponent } from './components/sidebar.component';
+import { AuthGuard } from './guards/auth.guard';
+import { UserService } from './services/user.service';
 @NgModule({
     imports: [
         CommonModule,
@@ -22,7 +24,9 @@ import { SidebarComponent } from './components/sidebar.component';
         SidebarComponent],
     providers: [
         CoreService,
-        RecommendService
+        RecommendService,
+        UserService,
+        AuthGuard
     ]
 })
 export class CoreModule { }
