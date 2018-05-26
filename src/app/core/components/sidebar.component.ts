@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../services/core.service';
-
+import { UserService } from '../services/user.service';
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -11,9 +11,12 @@ export class SidebarComponent implements OnInit {
     brandName: String = 'Good Movie';
     isShowingGenre: boolean;
     isLogin: Boolean;
-    constructor(private _coreService: CoreService) { }
+    user: Object;
+    constructor(private _userService: UserService,
+                private _coreService: CoreService) { }
 
     ngOnInit() {
+        this.user = this._userService.getCurrentUser();
         this.isShowingGenre = false;
         this._coreService.getGenres().subscribe(data => this.genres = data);
         this._coreService.isSignIn.subscribe( next => {

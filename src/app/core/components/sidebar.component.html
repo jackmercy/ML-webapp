@@ -12,9 +12,14 @@
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </div>
-    <ul>
-
-    </ul>
+    <div>
+        <p class="menu-link welcome-user">
+            <em>
+                <span *ngIf="!isLogin">Welcome to <span>Good Movies</span>!</span>
+                <span *ngIf="isLogin">Welcome <span>{{user['name']}}</span>!</span>
+            </em>
+        </p>
+    </div>
     <ul class="navigation--links">
         <li>
             <a class="menu-link" [routerLink]="['/movie/list']" routerLinkActive="active">

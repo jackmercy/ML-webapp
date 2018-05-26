@@ -124,10 +124,12 @@ $menu-padding: 20px;
             }
             .mat-icon {
                 height: 1.75rem;
+                margin-right: 5px;
             }
         }
         .active {
             color: $primary-light;
+
         }
     }
 }
@@ -178,3 +180,17 @@ $menu-padding: 20px;
 .cancel-hover:hover {
     background-color: $background !important;
 }
+
+.welcome-user {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: white;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    span {
+        span {
+            color: $primary-light;
+        }
+    }
+}
+
