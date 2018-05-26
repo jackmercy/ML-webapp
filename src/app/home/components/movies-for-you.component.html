@@ -1,0 +1,20 @@
+<h2 class="category-title">{{category}}</h2>
+<div class="voting-grid">
+    <div class="items">
+        <div class="item"
+                *ngFor="let movie of similarMovies">
+            <a class="poster" [routerLink]="['/movie', movie.id]">
+                <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
+                <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
+            </a>
+            <h3 class="movie-title">{{movie.title}}</h3>
+            <div class="movie--genre">
+                <ul>
+                    <li *ngFor="let genre of movie['genres']">
+                        <a [routerLink]="['/movie/genre']" [queryParams]="{ id: genre.id, name: genre.name}"> {{genre.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

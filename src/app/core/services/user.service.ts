@@ -21,4 +21,9 @@ export class UserService {
         return user ? true : false;
     }
 
+    getCurrentUser(): Object {
+        const user = JSON.parse(sessionStorage.getItem('currentUser'));
+        return user ? user : null;
+    }
+
 }

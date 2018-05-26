@@ -20,6 +20,7 @@
     font-weight: bold;
     border: 1px solid $primary-light;
     width: 100%;
+    outline: 0;
     &:disabled {
         color: gray !important;
         border: 1px solid gray;

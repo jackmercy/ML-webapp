@@ -17,11 +17,7 @@ export class SidebarComponent implements OnInit {
         this.isShowingGenre = false;
         this._coreService.getGenres().subscribe(data => this.genres = data);
         this._coreService.isSignIn.subscribe( next => {
-            if (next === true) {
-                this.isLogin = true;
-            } else {
-                this.isLogin = false;
-            }
+            this.isLogin = next ? true: false;
         });
     }
 
