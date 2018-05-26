@@ -17,29 +17,31 @@
     </ul>
     <ul class="navigation--links">
         <li>
-            <a class="menu-link" [routerLink]="['/movies/list']" routerLinkActive="active">
-                <mat-icon>local_movies</mat-icon>All movies</a>
+            <a class="menu-link" [routerLink]="['/movie/list']" routerLinkActive="active">
+                <mat-icon>local_movies</mat-icon> All movies</a>
         </li>
         <li (click)="onMenuClicked()">
             <a class="menu-link">
-                <mat-icon>date_range</mat-icon>Genres</a>
+                <mat-icon>filter_list</mat-icon> Genres</a>
         </li>
         <li class="cancel-hover" *ngIf="isShowingGenre">
             <ul class="navigation--genre" >
                 <li *ngFor="let genre of genres">
                     <a class="menu-link genre-title"
-                       [routerLink]="['/movie/genre']" [queryParams]="{ id: genre.id, name: genre.name}">
-                       <mat-icon>date_range</mat-icon>{{genre['name']}}</a>
+                       [routerLink]="['/movie/genre']" 
+                       [queryParams]="{ id: genre.id, name: genre.name}" 
+                       routerLinkActive="active">
+                       <mat-icon>movie</mat-icon> {{genre['name']}}</a>
                 </li>
                 <li>
                     <a class="menu-link genre-title">
-                        <mat-icon>date_range</mat-icon>Genres</a>
+                        <mat-icon>movie</mat-icon> Genres</a>
                 </li>
             </ul>
         </li>
         <li>
             <a class="menu-link" [routerLink]="['/movies/list', 'discover']" routerLinkActive="active">
-                <mat-icon>whatshot</mat-icon>App.Trending</a>
+                <mat-icon>whatshot</mat-icon> App.Trending</a>
         </li>
     </ul>
 </div>

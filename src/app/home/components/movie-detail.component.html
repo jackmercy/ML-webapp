@@ -58,13 +58,20 @@
             <div class="items">
                 <div class="item"
                      *ngFor="let movie of similarMovies">
-                    <a [routerLink]="['/movie', movie.id]">
+                    <a class="poster" [routerLink]="['/movie', movie.id]">
                         <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
                         <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
                     </a>
                     <h3 class="movie-title">{{movie.title}}</h3>
+                    <div class="movie--genre">
+                        <ul>
+                            <li *ngFor="let genre of movie['genres']">
+                                <a [routerLink]="['/movie/genre']" [queryParams]="{ id: genre.id, name: genre.name}"> {{genre.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-        
+                
             </div>
         </div>
     </mat-tab>
