@@ -28,14 +28,14 @@ export class MovieListComponent implements OnInit {
 
         this._activatedRouter.queryParams.subscribe((params: ParamMap) => {
             this.genresId = params['id'];
-            this.totalMovies = 1000 * 20;
 
-            // Page with genres
+            
             if (this.genresId) {
+                // Page with genres
                 this.category = params['name'];
                 this._coreService.getMovieByGenre(this.genresId, this.currentPage).subscribe(data => {
-                    this.moviePage = data;
-                    console.log(this.moviePage);
+                    this.moviePage = data['result'];
+                    this.totalMovies = data['total_results'];
                 });
             } else {
                 // Default page
@@ -53,10 +53,19 @@ export class MovieListComponent implements OnInit {
     }
 
     getPage(page: Number) {
-        this.currentPage = page;
-        this._coreService.getMoviePage(this.currentPage, this.perPage).subscribe(data => {
-            this.moviePage = data;
-        });
+        if (this.genresId) {
+            this.currentPage = page;
+            this._coreService.getMovieByGenre(this.genresId, this.currentPage).subscribe(data => {
+                this.moviePage = data['result'];
+                this.totalMovies = data['total_results'];
+            });
+        } else {
+            this.currentPage = page;
+            this._coreService.getMoviePage(this.currentPage, this.perPage).subscribe(data => {
+                this.moviePage = data;
+            });
+        }
+
     }
 
 

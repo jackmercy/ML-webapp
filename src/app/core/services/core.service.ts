@@ -108,7 +108,8 @@ export class CoreService {
     getMovieByGenre(id: Number, page: Number): Observable<any> {
         return this._http.get(`${this.movieByGenreUrl}api_key=${this.apiKey}&with_genres=${id}&page=${page}`)
             .map((response: Response) => {
-                const movies = response['results'];
+                let object = response;
+                const movies = object['results'];
                 _.forEach(movies, movie => {
                     let genreObjects;
                     const genreIds = movie['genre_ids'];
@@ -118,7 +119,8 @@ export class CoreService {
                         movie['genres'] = genreObjects;
                     });
                 });
-                return movies;
+                object['result'] = movies;
+                return object;
             })
             .catch(error => error['errors']);
     }
