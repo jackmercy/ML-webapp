@@ -40,6 +40,7 @@ export class SidebarComponent implements OnInit {
 
     onSignOutClicked() {
         this._coreService.logout();
+        this._router.navigate(['/movie/list']);
     }
 
     searchMovie(query: string) {
