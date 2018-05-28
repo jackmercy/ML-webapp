@@ -52,8 +52,13 @@ export class CoreService {
     isLogin(): boolean {
         const user = JSON.parse(sessionStorage.getItem('currentUser'));
         if (user) {
+            this.isSignIn.next(true);
             return true;
-        } else { return false; }
+        } else {
+            this.isSignIn.next(false);
+            return false;
+        }
+
     }
 
     getCurrentUser(): Object {
