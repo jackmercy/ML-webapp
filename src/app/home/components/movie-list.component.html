@@ -1,5 +1,5 @@
 <h2 class="category-title">{{category}}</h2>
-<div class="voting-grid" *ngIf="moviePage">
+<div class="voting-grid" *ngIf="moviePage.length > 0">
     <div class="items">
         <div class="item"
              *ngFor="let movie of moviePage | paginate: { itemsPerPage: perPage,
@@ -26,7 +26,7 @@
 </div>
 
 <!--Not found-->
-<div class="voting-grid" *ngIf="!moviePage">
+<div class="voting-grid" *ngIf="moviePage.length <= 0">
     <div class="error-div">
         <i class="material-icons error-icon">error_outline</i>
         <p class="error-text">No movie found</p>

@@ -23,7 +23,7 @@ export class MovieListComponent implements OnInit {
                 private _activatedRouter: ActivatedRoute) { }
 
     ngOnInit() {
-        this.isLoading = true;
+        //this.isLoading = false;
         this.currentPage = 1;
         this.perPage = 20;
 
@@ -43,6 +43,7 @@ export class MovieListComponent implements OnInit {
                     } else {
                         this.totalMovies = data['total_results'];
                     }
+                    //this.isLoading = true;
                 });
             } else if (this.searchQuery) {
                 // Page with search

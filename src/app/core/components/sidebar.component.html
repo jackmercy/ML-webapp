@@ -9,7 +9,7 @@
         <mat-form-field>
             <input matInput #search placeholder="Search..."
                    tabindex="-1" (keyup.enter)="searchMovie(search.value); search.value=''">
-            <mat-icon matSuffix>search</mat-icon>
+            <mat-icon matSuffix (click)="searchMovie(search.value); search.value=''">search</mat-icon>
         </mat-form-field>
     </div>
     <div>
