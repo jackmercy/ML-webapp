@@ -1,102 +1,108 @@
-<!--movie panel-->
-<div class="movie">
-    <div class="movie--background">
-        <div class="image-rotator" *ngIf="movie['backdrop_path']"
-             [ngStyle]="{'background-image': 'url('+'https://image.tmdb.org/t/p/original'+ movie['backdrop_path'] +')'}">
-        </div>
-        <div class="vignette"></div>
-    </div>
-    <div class="movie__head">
-        <button class="btn-back" (click)="back()">
-            <mat-icon>arrow_back</mat-icon>
-        </button>
-        <h2>{{ movie['title'] }}</h2>
-    </div>
-    <div class="movie__body">
-        <div class="movie--infos">
-            <p>
-                <mat-icon>date_range</mat-icon> {{ movie['release_date'] | date: 'y' }} •
-                <mat-icon>timer</mat-icon> {{ movie['runtime'] }} minutes •
-                <mat-icon [ngClass]="{'mat-green': movie['vote_average'] >= 5,
-                'mat-red': movie['vote_average'] < 5}">star</mat-icon> {{movie['vote_average']}}
-            </p>
-        </div>
-        <div class="movie--genre">
-            <ul>
-                <li *ngFor="let genre of movie['genres']">
-                    <a [routerLink]="['/movies/genre']" [queryParams]="{ id: genre.id, name: genre.name}"> {{genre.name}}</a>
-                </li>
-            </ul>
-        </div>
-        <p class="movie--overview">{{movie['overview']}}</p>
-    </div>
+<div class="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 </div>
-<!--End movie panel-->
+<div *ngIf="!isLoadingResults">
+        <!--movie panel-->
+    <div class="movie">
+        <div class="movie--background">
+            <div class="image-rotator" *ngIf="movie['backdrop_path']"
+                [ngStyle]="{'background-image': 'url('+'https://image.tmdb.org/t/p/original'+ movie['backdrop_path'] +')'}">
+            </div>
+            <div class="vignette"></div>
+        </div>
+        <div class="movie__head">
+            <button class="btn-back" (click)="back()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <h2>{{ movie['title'] }}</h2>
+        </div>
+        <div class="movie__body">
+            <div class="movie--infos">
+                <p>
+                    <mat-icon>date_range</mat-icon> {{ movie['release_date'] | date: 'y' }} •
+                    <mat-icon>timer</mat-icon> {{ movie['runtime'] }} minutes •
+                    <mat-icon [ngClass]="{'mat-green': movie['vote_average'] >= 5,
+                    'mat-red': movie['vote_average'] < 5}">star</mat-icon> {{movie['vote_average']}}
+                </p>
+            </div>
+            <div class="movie--genre">
+                <ul>
+                    <li *ngFor="let genre of movie['genres']">
+                        <a [routerLink]="['/movies/genre']" [queryParams]="{ id: genre.id, name: genre.name}"> {{genre.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <p class="movie--overview">{{movie['overview']}}</p>
+        </div>
+    </div>
+    <!--End movie panel-->
 
-<!--Info tab-->
-<mat-tab-group class="movie__tab">
-    <!--Cast-->
-    <mat-tab label="CAST">
-        <div class="movie--cast">
-            <mat-nav-list *ngFor="let person of cast">
-                <a mat-list-item>
-                <!--<a mat-list-item [routerLink]="['/star', person.id]">-->
-                    <div class="icon-container"
-                         matListAvatar [ngStyle]="{'background-image': 'url('+'https://image.tmdb.org/t/p/original'+person['profile_path']+')'}">
-                        <mat-icon *ngIf="!person['profile_path']" class="icon-person">person</mat-icon>
-                    </div>
-                    <h3 matLine>{{person['name']}}</h3>
-                    <p matLine>{{person['character']}}</p>
-                </a>
-            </mat-nav-list>
-        </div>
-    </mat-tab>
-    <!--End Cast-->
-    <!-- Similar movies -->
-    <mat-tab label="SIMILAR MOVIES">
-        <div class="movie--cast">
-            <div class="items">
-                <div class="item"
-                     *ngFor="let movie of similarMovies">
-                    <a class="poster" [routerLink]="['/movie', movie.id]">
-                        <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
-                        <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
+    <!--Info tab-->
+    <mat-tab-group class="movie__tab">
+        <!--Cast-->
+        <mat-tab label="CAST">
+            <div class="movie--cast">
+                <mat-nav-list *ngFor="let person of cast">
+                    <a mat-list-item>
+                    <!--<a mat-list-item [routerLink]="['/star', person.id]">-->
+                        <div class="icon-container"
+                            matListAvatar [ngStyle]="{'background-image': 'url('+'https://image.tmdb.org/t/p/original'+person['profile_path']+')'}">
+                            <mat-icon *ngIf="!person['profile_path']" class="icon-person">person</mat-icon>
+                        </div>
+                        <h3 matLine>{{person['name']}}</h3>
+                        <p matLine>{{person['character']}}</p>
                     </a>
-                    <h3 class="movie-title">{{movie.title}}</h3>
-                    <div class="movie--genre">
-                        <ul>
-                            <li *ngFor="let genre of movie['genres']">
-                                <a [routerLink]="['/movie/genre']" [queryParams]="{ id: genre.id, name: genre.name}"> {{genre.name}}</a>
-                            </li>
-                        </ul>
+                </mat-nav-list>
+            </div>
+        </mat-tab>
+        <!--End Cast-->
+        <!-- Similar movies -->
+        <mat-tab label="SIMILAR MOVIES">
+            <div class="movie--cast">
+                <div class="items">
+                    <div class="item"
+                        *ngFor="let movie of similarMovies">
+                        <a class="poster" [routerLink]="['/movie', movie.id]">
+                            <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
+                            <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
+                        </a>
+                        <h3 class="movie-title">{{movie.title}}</h3>
+                        <div class="movie--genre">
+                            <ul>
+                                <li *ngFor="let genre of movie['genres']">
+                                    <a [routerLink]="['/movie/genre']" [queryParams]="{ id: genre.id, name: genre.name}"> {{genre.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                    
                 </div>
-                
             </div>
-        </div>
-    </mat-tab>
-    <!-- End Similar movies -->
-<!--    <mat-tab label="TRAILER">
-        <section class="movie&#45;&#45;trailer" *ngIf="safeUrl; else noTrailer">
-            <iframe width="560" height="315" [src]="safeUrl" frameborder="0" allowfullscreen></iframe>
-        </section>
-        <ng-template #noTrailer>
-            <h3>No trailer is available
-                <mat-icon>sentiment_very_dissatisfied</mat-icon>
-            </h3>
-        </ng-template>
-    </mat-tab>-->
-<!--    <mat-tab label="{{'movie.Similar'}}">
-        <section class="movie&#45;&#45;similar items" *ngIf="similarmovies">
-            <div class="item" *ngFor="let movie of similarmovies">
-                <a [routerLink]="['/movies/movie', movie.id]">
-                    <img *ngIf="movie.poster_path"
-                         alt="poster movie">
-                    <img *ngIf="!movie.poster_path" src="assets/images/no_poster_available.jpg" alt="No poster available">
-                    <h3>{{movie.title}}</h3>
-                </a>
-            </div>
-        </section>
-    </mat-tab>-->
-</mat-tab-group>
-<!--End Info tab-->
+        </mat-tab>
+        <!-- End Similar movies -->
+    <!--    <mat-tab label="TRAILER">
+            <section class="movie&#45;&#45;trailer" *ngIf="safeUrl; else noTrailer">
+                <iframe width="560" height="315" [src]="safeUrl" frameborder="0" allowfullscreen></iframe>
+            </section>
+            <ng-template #noTrailer>
+                <h3>No trailer is available
+                    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+                </h3>
+            </ng-template>
+        </mat-tab>-->
+    <!--    <mat-tab label="{{'movie.Similar'}}">
+            <section class="movie&#45;&#45;similar items" *ngIf="similarmovies">
+                <div class="item" *ngFor="let movie of similarmovies">
+                    <a [routerLink]="['/movies/movie', movie.id]">
+                        <img *ngIf="movie.poster_path"
+                            alt="poster movie">
+                        <img *ngIf="!movie.poster_path" src="assets/images/no_poster_available.jpg" alt="No poster available">
+                        <h3>{{movie.title}}</h3>
+                    </a>
+                </div>
+            </section>
+        </mat-tab>-->
+    </mat-tab-group>
+    <!--End Info tab-->
+</div>
+

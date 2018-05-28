@@ -1,34 +1,40 @@
-<h2 class="category-title">{{category}}</h2>
-<div class="voting-grid" *ngIf="moviePage">
-    <div class="items">
-        <div class="item"
-             *ngFor="let movie of moviePage | paginate: { itemsPerPage: perPage,
-                                                           currentPage: currentPage,
-                                                           totalItems: totalMovies }">
-            <a [routerLink]="['/movie', movie.id]">
-                <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
-                <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
-            </a>
-            <h3><a class="movie-title" [routerLink]="['/movie', movie.id]">{{movie.title}}</a></h3>
-            <div class="movie--genre">
-                <ul>
-                    <li *ngFor="let genre of movie['genres']">
-                        <a [routerLink]="['/movie/genre']" [queryParams]="{ id: genre.id, name: genre.name}"> {{genre.name}}</a>
-                    </li>
-                </ul>
+<div class="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div *ngIf="!isLoadingResults">
+    <h2 class="category-title">{{category}}</h2>
+    <div class="voting-grid" *ngIf="moviePage">
+        <div class="items">
+            <div class="item"
+                *ngFor="let movie of moviePage | paginate: { itemsPerPage: perPage,
+                                                            currentPage: currentPage,
+                                                            totalItems: totalMovies }">
+                <a [routerLink]="['/movie', movie.id]">
+                    <img *ngIf="movie.poster_path" src="{{ 'https://image.tmdb.org/t/p/w185/' + movie['poster_path'] }}" alt="poster movie">
+                    <img *ngIf="!movie.poster_path" src="/assets/images/no_poster_available.jpg" alt="No poster available">
+                </a>
+                <h3><a class="movie-title" [routerLink]="['/movie', movie.id]">{{movie.title}}</a></h3>
+                <div class="movie--genre">
+                    <ul>
+                        <li *ngFor="let genre of movie['genres']">
+                            <a [routerLink]="['/movie/genre']" [queryParams]="{ id: genre.id, name: genre.name}"> {{genre.name}}</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+        <!--$event return the number of current page-->
+        <footer class="footer">
+            <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+        </footer>
     </div>
-    <!--$event return the number of current page-->
-    <footer class="footer">
-        <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
-    </footer>
+
+    <!--Not found-->
+    <div class="voting-grid" *ngIf="!moviePage">
+        <div class="error-div">
+            <i class="material-icons error-icon">error_outline</i>
+            <p class="error-text">No movie found</p>
+        </div>
+    </div>
 </div>
 
-<!--Not found-->
-<div class="voting-grid" *ngIf="!moviePage">
-    <div class="error-div">
-        <i class="material-icons error-icon">error_outline</i>
-        <p class="error-text">No movie found</p>
-    </div>
-</div>

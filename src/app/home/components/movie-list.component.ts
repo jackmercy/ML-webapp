@@ -14,22 +14,22 @@ export class MovieListComponent implements OnInit {
     perPage: Number;
     currentPage: Number;
     totalMovies: Number;
-    isLoading: boolean;
     moviePage = new Array<any>();
     posterUrl = 'https://image.tmdb.org/t/p/w185/';
+    isLoadingResults: boolean;
 
     constructor(private _coreService: CoreService,
                 private _activatedRouter: ActivatedRoute) { }
 
     ngOnInit() {
-        this.isLoading = true;
+        this.isLoadingResults = true;
         this.currentPage = 1;
         this.perPage = 20;
 
         this._activatedRouter.queryParams.subscribe((params: ParamMap) => {
             this.genresId = params['id'];
             this.totalMovies = 1000 * 20;
-
+            this.isLoadingResults = false;
             // Page with genres
             if (this.genresId) {
                 this.category = params['name'];

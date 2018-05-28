@@ -12,6 +12,8 @@ export class MoviesForYouComponent implements OnInit {
     private category: String = 'Movies For You';
     private user: Object;
     private movies: Array<any>;
+    isLoadingResults: boolean;
+
     constructor(private _userService: UserService,
                 private _router: Router,
                 private _recommendService: RecommendService,
@@ -19,18 +21,20 @@ export class MoviesForYouComponent implements OnInit {
 
     ngOnInit() {
         this.user = this._userService.getCurrentUser();
-
+        this.isLoadingResults = true;
         this._activatedRoute.url.subscribe(value => {
             const urlSegment = value[0];
             if (urlSegment.path === 'rated-movies') {
                 this.category = 'Movies You Rated';
                 this._recommendService.getRatedMovieByUser(String(this.user['id'])).subscribe(data => {
                     this.movies = data['result'];
+                    this.isLoadingResults = false;
                 });
             }
             if (urlSegment.path === 'movies-for-you') {
                 this._recommendService.getRecommendationBaseOnUser(String(this.user['id'])).subscribe(data => {
                     this.movies = data['prediction'];
+                    this.isLoadingResults = false;
                 });
             }
         });
