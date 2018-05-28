@@ -23,6 +23,7 @@ export class CoreService {
     baseUrl = 'https://api.themoviedb.org/3/movie/';
     movieByGenreUrl = 'https://api.themoviedb.org/3/discover/movie?';
     getGenreObjectsUrl = 'https://api.themoviedb.org/3/genre/movie/list?';
+    searchUrl = 'https://api.themoviedb.org/3/search/movie?'
     config = '&language=en-US';
 
     isSignIn: BehaviorSubject<Boolean>;
@@ -87,7 +88,7 @@ export class CoreService {
             });
     }
 
-    
+
     getMovieDetail(id: Number): Observable<any> {
         return this._http.get(this.baseUrl + id + '?api_key=' + this.apiKey + this.config);
     }
@@ -113,21 +114,25 @@ export class CoreService {
     getMovieByGenre(id: Number, page: Number): Observable<any> {
         return this._http.get(`${this.movieByGenreUrl}api_key=${this.apiKey}&with_genres=${id}&page=${page}`)
             .map((response: Response) => {
-                let object = response;
+                const object = response;
                 const movies = object['results'];
-                _.forEach(movies, movie => {
-                    let genreObjects;
-                    const genreIds = movie['genre_ids'];
-
-                    this.getGenreById(genreIds).subscribe(result => {
-                        genreObjects = result;
-                        movie['genres'] = genreObjects;
-                    });
-                });
-                object['result'] = movies;
+                object['result'] = this.convertMovie(movies);
                 return object;
             })
             .catch(error => error['errors']);
+    }
+
+    convertMovie(movies: Array<Object>): Array<Object> {
+        _.forEach(movies, movie => {
+            let genreObjects;
+            const genreIds = movie['genre_ids'];
+
+            this.getGenreById(genreIds).subscribe(result => {
+                genreObjects = result;
+                movie['genres'] = genreObjects;
+            });
+        });
+        return movies;
     }
 
     // Return list of genres object by genre id (with id and name)
@@ -151,6 +156,17 @@ export class CoreService {
         return this._http.get(`${this.getGenreObjectsUrl}api_key=${this.apiKey}`)
             .map((response: Response) => response['genres']);
     }
-    
+
+    searchMovie(query: String, page: Number) {
+        return this._http.get(`${this.searchUrl}api_key=${this.apiKey}&query=${query}&page=${page}`)
+            .map((response: Response) => {
+                const object = response;
+                const movies = object['results'];
+                object['result'] = this.convertMovie(movies);
+                return object;
+            })
+            .catch(error => error['errors']);
+    }
+
 
 }

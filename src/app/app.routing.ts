@@ -41,6 +41,9 @@ import { NotFoundPageComponent } from "./home/components/not-found-page.componen
                                     component: MovieListComponent
                                 },
                                 {
+                                    path: 'search', component: MovieListComponent
+                                },
+                                {
                                     path: ':id', component: MovieDetailComponent
                                 }
                             ]

@@ -55,7 +55,7 @@
     <!-- Similar movies -->
     <mat-tab label="SIMILAR MOVIES">
         <div class="movie--cast">
-            <div class="items">
+            <div *ngIf="similarMovies" class="items">
                 <div class="item"
                      *ngFor="let movie of similarMovies">
                     <a class="poster" [routerLink]="['/movie', movie.id]">
@@ -72,6 +72,12 @@
                     </div>
                 </div>
                 
+            </div>
+            <div class="items" *ngIf="!similarMovies">
+                <div class="error-div">
+                    <i class="material-icons error-icon">error_outline</i>
+                    <p class="error-text">No movie found</p>
+                </div>
             </div>
         </div>
     </mat-tab>

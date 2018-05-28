@@ -8,7 +8,7 @@
     <div class="navigation--search">
         <mat-form-field>
             <input matInput #search placeholder="Search..."
-                   tabindex="-1">
+                   tabindex="-1" (keyup.enter)="searchMovie(search.value); search.value=''">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </div>
@@ -41,8 +41,8 @@
             <ul class="navigation--genre" >
                 <li *ngFor="let genre of genres">
                     <a class="menu-link genre-title"
-                       [routerLink]="['/movie/genre']" 
-                       [queryParams]="{ id: genre.id, name: genre.name}" 
+                       [routerLink]="['/movie/genre']"
+                       [queryParams]="{ id: genre.id, name: genre.name}"
                        routerLinkActive="active">
                        <mat-icon>movie</mat-icon> {{genre['name']}}</a>
                 </li>
