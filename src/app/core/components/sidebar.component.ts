@@ -26,6 +26,9 @@ export class SidebarComponent implements OnInit {
         this._router.onSameUrlNavigation = 'reload';
         this.user = this._userService.getCurrentUser();
         this.isShowingGenre = false;
+
+        this.isLogin = this._coreService.isLogin();
+
         this._coreService.getGenres().subscribe(data => this.genres = data);
         this._coreService.isSignIn.subscribe( next => {
             this.isLogin = next ? true : false;

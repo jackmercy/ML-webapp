@@ -19,10 +19,11 @@ export class MoviesForYouComponent implements OnInit {
 
     ngOnInit() {
         this.user = this._userService.getCurrentUser();
+
         this._activatedRoute.url.subscribe(value => {
             const urlSegment = value[0];
             if (urlSegment.path === 'rated-movies') {
-                this.category = 'Movies You Rated'
+                this.category = 'Movies You Rated';
                 this._recommendService.getRatedMovieByUser(String(this.user['id'])).subscribe(data => {
                     this.movies = data['result'];
                 });
