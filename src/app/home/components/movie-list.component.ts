@@ -14,6 +14,8 @@ export class MovieListComponent implements OnInit {
     perPage: Number;
     currentPage: Number;
     totalMovies: Number;
+    searchQuery: String;
+    isLoading: boolean;
     moviePage = new Array<any>();
     posterUrl = 'https://image.tmdb.org/t/p/w185/';
     isLoadingResults: boolean;
@@ -31,11 +33,31 @@ export class MovieListComponent implements OnInit {
             this.totalMovies = 1000 * 20;
             this.isLoadingResults = false;
             // Page with genres
+            this.searchQuery = params['query'];
+            console.log(params);
+
+
             if (this.genresId) {
+                // Page with genres
                 this.category = params['name'];
                 this._coreService.getMovieByGenre(this.genresId, this.currentPage).subscribe(data => {
-                    this.moviePage = data;
-                    console.log(this.moviePage);
+                    this.moviePage = data['result'];
+                    if (data['total_results'] > (1000 * 20)) {
+                        this.totalMovies = 1000 * 20;
+                    } else {
+                        this.totalMovies = data['total_results'];
+                    }
+                });
+            } else if (this.searchQuery) {
+                // Page with search
+                this.category = `Results for "${this.searchQuery}"`;
+                this._coreService.searchMovie(this.searchQuery, this.currentPage).subscribe(data => {
+                    this.moviePage = data['result'];
+                    if (data['total_results'] > (1000 * 20)) {
+                        this.totalMovies = 1000 * 20;
+                    } else {
+                        this.totalMovies = data['total_results'];
+                    }
                 });
             } else {
                 // Default page
@@ -53,10 +75,22 @@ export class MovieListComponent implements OnInit {
     }
 
     getPage(page: Number) {
-        this.currentPage = page;
-        this._coreService.getMoviePage(this.currentPage, this.perPage).subscribe(data => {
-            this.moviePage = data;
-        });
+        if (this.genresId) {
+            this.currentPage = page;
+            this._coreService.getMovieByGenre(this.genresId, this.currentPage).subscribe(data => {
+                this.moviePage = data['result'];
+            });
+        } else if (this.searchQuery) {
+            this._coreService.searchMovie(this.searchQuery, this.currentPage).subscribe(data => {
+                this.moviePage = data['result'];
+            });
+        } else {
+            this.currentPage = page;
+            this._coreService.getMoviePage(this.currentPage, this.perPage).subscribe(data => {
+                this.moviePage = data;
+            });
+        }
+
     }
 
 

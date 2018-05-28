@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../../core/services/core.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { RecommendService } from '../../core/services/recommend.service';
+import {Location} from '@angular/common';
+
 @Component({
     selector: 'app-movie-detail',
     templateUrl: './movie-detail.component.html',
@@ -16,7 +18,8 @@ export class MovieDetailComponent implements OnInit {
     constructor(private _coreService: CoreService,
                 private _activatedRoute: ActivatedRoute,
                 private _router: Router,
-                private _recommendService: RecommendService) { }
+                private _recommendService: RecommendService,
+                private _location: Location) { }
 
     ngOnInit() {
         this.isLoadingResults = true;
@@ -32,7 +35,7 @@ export class MovieDetailComponent implements OnInit {
     }
 
     back() {
-        this._router.navigate(['']);
+        this._location.back();
     }
 
 }

@@ -1,4 +1,4 @@
-
+@import "../../../assets/scss/palette";
 
 .voting-grid {
     background-color: #141414;
@@ -6,11 +6,11 @@
         text-align: center;
         margin-top: 150px;
         .error-icon {
-            color: white;
+            color: $grey;
             font-size: 5rem;
         }
         .error-text {
-            color: white;
+            color: $grey;
             font-size: 2rem;
         }
     }

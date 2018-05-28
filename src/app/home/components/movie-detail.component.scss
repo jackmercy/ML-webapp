@@ -1,5 +1,6 @@
 @import '../../../assets/scss/palette';
 @import './movie-list.component.scss';
+
 .movie {
     display: flex;
     flex-direction: column;
@@ -179,4 +180,17 @@
 
 small {
     padding: 5px;
+}
+
+.error-div {
+    text-align: center;
+    margin-top: 150px;
+    .error-icon {
+        color: $grey;
+        font-size: 5rem;
+    }
+    .error-text {
+        color: $grey;
+        font-size: 2rem;
+    }
 }

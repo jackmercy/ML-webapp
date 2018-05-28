@@ -21,7 +21,6 @@ export class SidebarComponent implements OnInit {
         this._router.events.subscribe(value => {
             this.isLogin = this._coreService.isLogin();
             this.user = this._userService.getCurrentUser();
-            console.log(value);
         });
         this._router.onSameUrlNavigation = 'reload';
         this.user = this._userService.getCurrentUser();
@@ -41,6 +40,14 @@ export class SidebarComponent implements OnInit {
 
     onSignOutClicked() {
         this._coreService.logout();
+    }
+
+    searchMovie(query: string) {
+        if (query === '') {
+            this._router.navigate(['/movie/list']);
+        } else {
+            this._router.navigate(['/movie/search'], { queryParams: { query: query }});
+        }
     }
 
 }

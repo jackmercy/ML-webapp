@@ -1,5 +1,6 @@
 @import '../../../assets/scss/palette';
 
+
 .category-title {
     padding-top: 1.5rem;
     color: white;
@@ -60,11 +61,11 @@
         text-align: center;
         margin-top: 150px;
         .error-icon {
-            color: white;
+            color: $grey;
             font-size: 5rem;
         }
         .error-text {
-            color: white;
+            color: $grey;
             font-size: 2rem;
         }
     }
