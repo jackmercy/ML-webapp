@@ -1,1 +1,10 @@
 @import './movie-list.component.scss';
+@import './movie-detail.component.scss';
+
+.mat-green {
+    color: $green;
+}
+
+.mat-red {
+    color: $primary-light;
+}

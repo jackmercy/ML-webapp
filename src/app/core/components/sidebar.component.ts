@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../services/core.service';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -13,14 +14,21 @@ export class SidebarComponent implements OnInit {
     isLogin: Boolean;
     user: Object;
     constructor(private _userService: UserService,
-                private _coreService: CoreService) { }
+                private _coreService: CoreService,
+                private _router: Router) { }
 
     ngOnInit() {
+        this._router.events.subscribe(value => {
+            this.isLogin = this._coreService.isLogin();
+            this.user = this._userService.getCurrentUser();
+            console.log(value);
+        });
+        this._router.onSameUrlNavigation = 'reload';
         this.user = this._userService.getCurrentUser();
         this.isShowingGenre = false;
         this._coreService.getGenres().subscribe(data => this.genres = data);
         this._coreService.isSignIn.subscribe( next => {
-            this.isLogin = next ? true: false;
+            this.isLogin = next ? true : false;
         });
     }
 

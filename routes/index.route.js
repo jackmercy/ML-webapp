@@ -1,5 +1,4 @@
 import express from 'express';
-import productRoute from './product.route';
 import movieRoute from './movie.route';
 import userRoute from './user.route';
 
@@ -12,7 +11,6 @@ router.get('/check', (req, res) =>
   res.send('Hello hooman!')
 );
 
-router.use('/product', productRoute);
 router.use('/movie', movieRoute);
 router.use('/user', userRoute);
 

@@ -82,7 +82,7 @@ export class CoreService {
             });
     }
 
-    // Connect to The Movie Database
+    
     getMovieDetail(id: Number): Observable<any> {
         return this._http.get(this.baseUrl + id + '?api_key=' + this.apiKey + this.config);
     }
@@ -144,4 +144,6 @@ export class CoreService {
         return this._http.get(`${this.getGenreObjectsUrl}api_key=${this.apiKey}`)
             .map((response: Response) => response['genres']);
     }
+    
+
 }

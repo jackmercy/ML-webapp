@@ -29,6 +29,10 @@
             <a class="menu-link" [routerLink]="['/movies-for-you']" routerLinkActive="active">
                 <mat-icon>movie_filter</mat-icon> Movies for you</a>
         </li>
+        <li *ngIf="isLogin">
+            <a class="menu-link" [routerLink]="['/rated-movies']" routerLinkActive="active">
+                <mat-icon>star_rate</mat-icon> Movies you rated</a>
+        </li>
         <li (click)="onMenuClicked()">
             <a class="menu-link">
                 <mat-icon>filter_list</mat-icon> Genres</a>
@@ -47,10 +51,6 @@
                         <mat-icon>movie</mat-icon> Genres</a>
                 </li>
             </ul>
-        </li>
-        <li>
-            <a class="menu-link" [routerLink]="['/movies/list', 'discover']" routerLinkActive="active">
-                <mat-icon>whatshot</mat-icon> App.Trending</a>
         </li>
         <li *ngIf="!isLogin">
             <a class="menu-link" [routerLink]="['/login']">

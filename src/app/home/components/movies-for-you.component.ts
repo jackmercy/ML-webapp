@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreService } from '../../core/services/core.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecommendService } from '../../core/services/recommend.service';
 import { UserService } from '../../core/services/user.service';
 @Component({
@@ -11,16 +11,30 @@ import { UserService } from '../../core/services/user.service';
 export class MoviesForYouComponent implements OnInit {
     private category: String = 'Movies For You';
     private user: Object;
-    private similarMovies: Array<any>;
+    private movies: Array<any>;
     constructor(private _userService: UserService,
                 private _router: Router,
-                private _recommendService: RecommendService) { }
+                private _recommendService: RecommendService,
+                private _activatedRoute: ActivatedRoute) { }
 
     ngOnInit() {
         this.user = this._userService.getCurrentUser();
-        this._recommendService.getRecommendationBaseOnUser(String(this.user['id'])).subscribe(data => {
-            this.similarMovies = data['prediction'];
+        this._activatedRoute.url.subscribe(value => {
+            const urlSegment = value[0];
+            if (urlSegment.path === 'rated-movies') {
+                this.category = 'Movies You Rated'
+                this._recommendService.getRatedMovieByUser(String(this.user['id'])).subscribe(data => {
+                    this.movies = data['result'];
+                });
+            }
+            if (urlSegment.path === 'movies-for-you') {
+                this._recommendService.getRecommendationBaseOnUser(String(this.user['id'])).subscribe(data => {
+                    this.movies = data['prediction'];
+                });
+            }
         });
+
+
     }
 
 }

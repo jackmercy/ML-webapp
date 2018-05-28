@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { CoreService } from './services/core.service';
 import { RecommendService } from './services/recommend.service';
 import { SharedModule } from '../shared/shared.module';
-import { NavbarComponent } from './components/navbar.component';
 import { SidebarComponent } from './components/sidebar.component';
 import { AuthGuard } from './guards/auth.guard';
 import { UserService } from './services/user.service';
@@ -16,11 +15,9 @@ import { UserService } from './services/user.service';
         RouterModule
     ],
     declarations: [
-        NavbarComponent,
         SidebarComponent
     ],
     exports: [
-        NavbarComponent,
         SidebarComponent],
     providers: [
         CoreService,

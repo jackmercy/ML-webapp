@@ -8,6 +8,7 @@ import { MovieListComponent } from './components/movie-list.component';
 import { MovieDetailComponent } from './components/movie-detail.component';
 import { MovieComponent } from './components/movie.component';
 import { MoviesForYouComponent } from './components/movies-for-you.component';
+import { NotFoundPageComponent } from './components/not-found-page.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -22,7 +23,8 @@ import { MoviesForYouComponent } from './components/movies-for-you.component';
         MovieListComponent,
         MovieDetailComponent,
         MovieComponent,
-        MoviesForYouComponent
+        MoviesForYouComponent,
+        NotFoundPageComponent
     ]
 })
 export class HomeModule { }

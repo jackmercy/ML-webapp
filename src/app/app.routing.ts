@@ -13,6 +13,7 @@ import { MovieListComponent } from './home/components/movie-list.component';
 import { MovieDetailComponent } from './home/components/movie-detail.component';
 import { MovieComponent } from './home/components/movie.component';
 import { MoviesForYouComponent } from './home/components/movies-for-you.component';
+import { NotFoundPageComponent } from "./home/components/not-found-page.component";
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -54,6 +55,12 @@ import { MoviesForYouComponent } from './home/components/movies-for-you.componen
                         },
                         {
                             path: 'movies-for-you', canActivate: [AuthGuard] , component: MoviesForYouComponent
+                        },
+                        {
+                            path: 'rated-movies', canActivate: [AuthGuard], component: MoviesForYouComponent
+                        },
+                        {
+                            path: '**', component: NotFoundPageComponent
                         }
                     ]
                 }
