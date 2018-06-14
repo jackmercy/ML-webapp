@@ -27,14 +27,15 @@ after install mongodb: open terminal run `mongod`
 
 ## Run project
 
-# Front-end
-1. Run `npm run ui` for a dev server. 
-2. Navigate to `localhost:4200/`
-The web application will automatically reload if you change any of the source files.
 # Back-end
 1. Open 1st terminal: `mongod`
 2. Open 2nd terminal: `npm start`
 Express server will run at `localhost:5000`
+
+# Front-end
+1. Run `npm run ui` for a dev server. 
+2. Navigate to `localhost:4200/`
+The web application will automatically reload if you change any of the source files.
 
 ---
 
